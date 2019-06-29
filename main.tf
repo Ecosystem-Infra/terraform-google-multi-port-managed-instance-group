@@ -96,9 +96,39 @@ resource "google_compute_instance_group_manager" "default" {
   // Issue: https://github.com/terraform-providers/terraform-provider-google/issues/667
   target_size = "${var.autoscaling ? var.min_replicas : var.size}"
 
+  # Terraform version 0.11 does not support dynamism in the defintion of nested
+  # blocks, so each port must be explicitly specified by the consumer and here
+  # in the resource definition.
+  #
+  # https://github.com/hashicorp/terraform/issues/7034
   named_port {
-    name = "${var.service_port_name}"
-    port = "${var.service_port}"
+    name = "${var.service_port_1_name}"
+    port = "${var.service_port_1}"
+  }
+
+  named_port {
+    name = "${var.service_port_2_name}"
+    port = "${var.service_port_2}"
+  }
+
+  named_port {
+    name = "${var.service_port_3_name}"
+    port = "${var.service_port_3}"
+  }
+
+  named_port {
+    name = "${var.service_port_4_name}"
+    port = "${var.service_port_4}"
+  }
+
+  named_port {
+    name = "${var.service_port_5_name}"
+    port = "${var.service_port_5}"
+  }
+
+  named_port {
+    name = "${var.service_port_6_name}"
+    port = "${var.service_port_6}"
   }
 
   auto_healing_policies = {
@@ -176,9 +206,39 @@ resource "google_compute_region_instance_group_manager" "default" {
     initial_delay_sec = "${var.hc_initial_delay}"
   }
 
+  # Terraform version 0.11 does not support dynamism in the defintion of nested
+  # blocks, so each port must be explicitly specified by the consumer and here
+  # in the resource definition.
+  #
+  # https://github.com/hashicorp/terraform/issues/7034
   named_port {
-    name = "${var.service_port_name}"
-    port = "${var.service_port}"
+    name = "${var.service_port_1_name}"
+    port = "${var.service_port_1}"
+  }
+
+  named_port {
+    name = "${var.service_port_2_name}"
+    port = "${var.service_port_2}"
+  }
+
+  named_port {
+    name = "${var.service_port_3_name}"
+    port = "${var.service_port_3}"
+  }
+
+  named_port {
+    name = "${var.service_port_4_name}"
+    port = "${var.service_port_4}"
+  }
+
+  named_port {
+    name = "${var.service_port_5_name}"
+    port = "${var.service_port_5}"
+  }
+
+  named_port {
+    name = "${var.service_port_6_name}"
+    port = "${var.service_port_6}"
   }
 
   provisioner "local-exec" {
@@ -258,7 +318,7 @@ resource "google_compute_health_check" "mig-health-check" {
   unhealthy_threshold = "${var.hc_unhealthy_threshold}"
 
   http_health_check {
-    port         = "${var.hc_port == "" ? var.service_port : var.hc_port}"
+    port         = "${var.hc_port == "" ? var.service_port_1 : var.hc_port}"
     request_path = "${var.hc_path}"
   }
 }
@@ -271,7 +331,7 @@ resource "google_compute_firewall" "mig-health-check" {
 
   allow {
     protocol = "tcp"
-    ports    = ["${var.hc_port == "" ? var.service_port : var.hc_port}"]
+    ports    = ["${var.hc_port == "" ? var.service_port_1 : var.hc_port}"]
   }
 
   source_ranges = ["130.211.0.0/22", "35.191.0.0/16"]

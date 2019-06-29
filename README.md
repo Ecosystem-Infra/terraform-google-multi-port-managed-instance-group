@@ -1,23 +1,36 @@
-# Managed Instance Group Terraform Module
+# Multi-port Managed Instance Group Terraform Module
 
 Modular Google Compute Engine managed instance group for Terraform.
+
+This repository is a fork, maintained in order to define a managed instance
+group with six service ports.
 
 ## Usage
 
 ```ruby
 module "mig1" {
-  source            = "GoogleCloudPlatform/managed-instance-group/google"
-  version           = "1.1.14"
-  region            = "${var.region}"
-  zone              = "${var.zone}"
-  name              = "group1"
-  size              = 2
-  service_port      = 80
-  service_port_name = "http"
-  http_health_check = false
-  target_pools      = ["${module.gce-lb-fr.target_pool}"]
-  target_tags       = ["allow-service1"]
-  ssh_source_ranges = ["0.0.0.0/0"]
+  source              = "GoogleCloudPlatform/managed-instance-group/google"
+  version             = "1.1.14"
+  region              = "${var.region}"
+  zone                = "${var.zone}"
+  name                = "group1"
+  size                = 2
+  service_port_1      = 80
+  service_port_1_name = "http-primary"
+  service_port_2      = 8000
+  service_port_2_name = "http-secondary"
+  service_port_3      = 443
+  service_port_3_name = "https"
+  service_port_4      = 8001
+  service_port_4_name = "http2"
+  service_port_5      = 8002
+  service_port_5_name = "websocket"
+  service_port_6      = 8003
+  service_port_6_name = "websocket-secure"
+  http_health_check   = false
+  target_pools        = ["${module.gce-lb-fr.target_pool}"]
+  target_tags         = ["allow-service1"]
+  ssh_source_ranges   = ["0.0.0.0/0"]
 }
 ```
 

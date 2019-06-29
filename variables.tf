@@ -109,11 +109,51 @@ variable update_policy {
   default     = []
 }
 
-variable service_port {
+variable service_port_1 {
   description = "Port the service is listening on."
 }
 
-variable service_port_name {
+variable service_port_1_name {
+  description = "Name of the port the service is listening on."
+}
+
+variable service_port_2 {
+  description = "Port the service is listening on."
+}
+
+variable service_port_2_name {
+  description = "Name of the port the service is listening on."
+}
+
+variable service_port_3 {
+  description = "Port the service is listening on."
+}
+
+variable service_port_3_name {
+  description = "Name of the port the service is listening on."
+}
+
+variable service_port_4 {
+  description = "Port the service is listening on."
+}
+
+variable service_port_4_name {
+  description = "Name of the port the service is listening on."
+}
+
+variable service_port_5 {
+  description = "Port the service is listening on."
+}
+
+variable service_port_5_name {
+  description = "Name of the port the service is listening on."
+}
+
+variable service_port_6 {
+  description = "Port the service is listening on."
+}
+
+variable service_port_6_name {
   description = "Name of the port the service is listening on."
 }
 
@@ -285,7 +325,7 @@ variable hc_unhealthy_threshold {
 }
 
 variable hc_port {
-  description = "Health check, health check port, if different from var.service_port, if not given, var.service_port is used."
+  description = "Health check, health check port, if different from var.service_port_1, if not given, var.service_port_1 is used."
   default     = ""
 }
 

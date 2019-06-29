@@ -44,14 +44,64 @@ output target_tags {
   value       = "${var.target_tags}"
 }
 
-output service_port {
-  description = "Pass through of input `service_port`."
-  value       = "${var.service_port}"
+output service_port_1 {
+  description = "Pass through of input `service_port_1`."
+  value       = "${var.service_port_1}"
 }
 
-output service_port_name {
-  description = "Pass through of input `service_port_name`."
-  value       = "${var.service_port_name}"
+output service_port_1_name {
+  description = "Pass through of input `service_port_1_name`."
+  value       = "${var.service_port_1_name}"
+}
+
+output service_port_2 {
+  description = "Pass through of input `service_port_2`."
+  value       = "${var.service_port_2}"
+}
+
+output service_port_2_name {
+  description = "Pass through of input `service_port_2_name`."
+  value       = "${var.service_port_2_name}"
+}
+
+output service_port_3 {
+  description = "Pass through of input `service_port_3`."
+  value       = "${var.service_port_3}"
+}
+
+output service_port_3_name {
+  description = "Pass through of input `service_port_3_name`."
+  value       = "${var.service_port_3_name}"
+}
+
+output service_port_4 {
+  description = "Pass through of input `service_port_4`."
+  value       = "${var.service_port_4}"
+}
+
+output service_port_4_name {
+  description = "Pass through of input `service_port_4_name`."
+  value       = "${var.service_port_4_name}"
+}
+
+output service_port_5 {
+  description = "Pass through of input `service_port_5`."
+  value       = "${var.service_port_5}"
+}
+
+output service_port_5_name {
+  description = "Pass through of input `service_port_5_name`."
+  value       = "${var.service_port_5_name}"
+}
+
+output service_port_6 {
+  description = "Pass through of input `service_port_6`."
+  value       = "${var.service_port_6}"
+}
+
+output service_port_6_name {
+  description = "Pass through of input `service_port_6_name`."
+  value       = "${var.service_port_6_name}"
 }
 
 output depends_id {
