@@ -132,7 +132,7 @@ resource "google_compute_instance_group_manager" "default" {
   }
 
   auto_healing_policies = {
-    health_check      = "${var.http_health_check ? element(concat(google_compute_health_check.mig-health-check.*.self_link, list("")), 0) : ""}"
+    health_check      = "${var.https_health_check ? element(concat(google_compute_health_check.mig-health-check.*.self_link, list("")), 0) : ""}"
     initial_delay_sec = "${var.hc_initial_delay}"
   }
 
@@ -202,7 +202,7 @@ resource "google_compute_region_instance_group_manager" "default" {
   target_size = "${var.autoscaling ? var.min_replicas : var.size}"
 
   auto_healing_policies {
-    health_check      = "${var.http_health_check ? element(concat(google_compute_health_check.mig-health-check.*.self_link, list("")), 0) : ""}"
+    health_check      = "${var.https_health_check ? element(concat(google_compute_health_check.mig-health-check.*.self_link, list("")), 0) : ""}"
     initial_delay_sec = "${var.hc_initial_delay}"
   }
 
@@ -253,7 +253,7 @@ resource "google_compute_region_instance_group_manager" "default" {
 
   // Initial instance verification can take 10-15m when a health check is present.
   timeouts = {
-    create = "${var.http_health_check ? "15m" : "5m"}"
+    create = "${var.https_health_check ? "15m" : "5m"}"
   }
 }
 
@@ -308,7 +308,7 @@ resource "google_compute_firewall" "default-ssh" {
 }
 
 resource "google_compute_health_check" "mig-health-check" {
-  count   = "${var.module_enabled && var.http_health_check ? 1 : 0}"
+  count   = "${var.module_enabled && var.https_health_check ? 1 : 0}"
   name    = "${var.name}"
   project = "${var.project}"
 
@@ -317,14 +317,14 @@ resource "google_compute_health_check" "mig-health-check" {
   healthy_threshold   = "${var.hc_healthy_threshold}"
   unhealthy_threshold = "${var.hc_unhealthy_threshold}"
 
-  http_health_check {
+  https_health_check {
     port         = "${var.hc_port == "" ? var.service_port_1 : var.hc_port}"
     request_path = "${var.hc_path}"
   }
 }
 
 resource "google_compute_firewall" "mig-health-check" {
-  count   = "${var.module_enabled && var.http_health_check ? 1 : 0}"
+  count   = "${var.module_enabled && var.https_health_check ? 1 : 0}"
   project = "${var.subnetwork_project == "" ? var.project : var.subnetwork_project}"
   name    = "${var.name}-vm-hc"
   network = "${var.network}"

@@ -67,7 +67,7 @@ module "mig1" {
   service_port_name  = "http"
   startup_script     = "${data.template_file.startup-script.rendered}"
   wait_for_instances = true
-  http_health_check  = false
+  https_health_check = false
   network            = "${google_compute_subnetwork.default.name}"
   subnetwork         = "${google_compute_subnetwork.default.name}"
   target_pools       = ["${module.gce-lb-fr.target_pool}"]

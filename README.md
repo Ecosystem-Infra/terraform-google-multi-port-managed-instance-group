@@ -27,7 +27,7 @@ module "mig1" {
   service_port_5_name = "websocket"
   service_port_6      = 8003
   service_port_6_name = "websocket-secure"
-  http_health_check   = false
+  https_health_check   = false
   target_pools        = ["${module.gce-lb-fr.target_pool}"]
   target_tags         = ["allow-service1"]
   ssh_source_ranges   = ["0.0.0.0/0"]

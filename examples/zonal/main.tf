@@ -15,7 +15,7 @@ variable "module_enabled" {
   default = true
 }
 
-variable "http_health_check" {
+variable "https_health_check" {
   default = true
 }
 
@@ -68,7 +68,7 @@ module "mig1" {
   network            = "${google_compute_subnetwork.default.name}"
   subnetwork         = "${google_compute_subnetwork.default.name}"
   instance_labels    = "${var.labels}"
-  http_health_check  = "${var.http_health_check}"
+  https_health_check = "${var.https_health_check}"
   update_strategy    = "ROLLING_UPDATE"
 
   rolling_update_policy = [{

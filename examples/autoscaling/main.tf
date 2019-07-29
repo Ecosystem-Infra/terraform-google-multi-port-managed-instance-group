@@ -38,7 +38,7 @@ module "mig1" {
   name               = "${var.network_name}"
   wait_for_instances = true
   autoscaling        = true
-  http_health_check  = true
+  https_health_check = true
 
   autoscaling_cpu = [{
     target = 0.8
