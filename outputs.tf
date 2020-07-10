@@ -104,6 +104,16 @@ output service_port_6_name {
   value       = "${var.service_port_6_name}"
 }
 
+output service_port_7 {
+  description = "Pass through of input `service_port_7`."
+  value       = "${var.service_port_7}"
+}
+
+output service_port_7_name {
+  description = "Pass through of input `service_port_7_name`."
+  value       = "${var.service_port_7_name}"
+}
+
 output depends_id {
   description = "Id of the dummy dependency created used for intra-module dependency creation with zonal groups."
   value       = "${element(concat(null_resource.dummy_dependency.*.id, list("")), 0)}"

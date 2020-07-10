@@ -131,6 +131,11 @@ resource "google_compute_instance_group_manager" "default" {
     port = "${var.service_port_6}"
   }
 
+  named_port {
+    name = "${var.service_port_7_name}"
+    port = "${var.service_port_7}"
+  }
+
   auto_healing_policies = {
     health_check      = "${var.https_health_check ? element(concat(google_compute_health_check.mig-health-check.*.self_link, list("")), 0) : ""}"
     initial_delay_sec = "${var.hc_initial_delay}"
@@ -239,6 +244,11 @@ resource "google_compute_region_instance_group_manager" "default" {
   named_port {
     name = "${var.service_port_6_name}"
     port = "${var.service_port_6}"
+  }
+
+  named_port {
+    name = "${var.service_port_7_name}"
+    port = "${var.service_port_7}"
   }
 
   provisioner "local-exec" {

@@ -157,6 +157,14 @@ variable service_port_6_name {
   description = "Name of the port the service is listening on."
 }
 
+variable service_port_7 {
+  description = "Port the service is listening on."
+}
+
+variable service_port_7_name {
+  description = "Name of the port the service is listening on."
+}
+
 variable target_tags {
   description = "Tag added to instances for firewall and networking."
   type        = "list"
