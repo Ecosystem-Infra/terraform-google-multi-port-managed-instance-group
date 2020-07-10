@@ -3,7 +3,7 @@
 Modular Google Compute Engine managed instance group for Terraform.
 
 This repository is a fork, maintained in order to define a managed instance
-group with six service ports.
+group with seven service ports.
 
 ## Usage
 
@@ -27,6 +27,8 @@ module "mig1" {
   service_port_5_name = "websocket"
   service_port_6      = 8003
   service_port_6_name = "websocket-secure"
+  service_port_7      = 8004
+  service_port_7_name = "https-secondary"
   https_health_check   = false
   target_pools        = ["${module.gce-lb-fr.target_pool}"]
   target_tags         = ["allow-service1"]
